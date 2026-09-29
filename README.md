@@ -1,2 +1,2 @@
-# insurance-agentic-ai-showcase
-insurance-agentic-showcase
+# fraud-agentic-ai-showcase
+fraud-agentic-ai-showcase
