@@ -32,7 +32,7 @@ dependencies {
 	//Ai
 	implementation 'org.springframework.ai:spring-ai-starter-model-ollama'
 	implementation 'org.springframework.ai:spring-ai-vector-store-advisor'
-//	implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+	implementation 'org.springframework.ai:spring-ai-starter-model-openai'
 
 
 	//GemFire
@@ -40,6 +40,7 @@ dependencies {
 	implementation "com.vmware.gemfire:spring-boot-4.0-gemfire-10.2:$springBootForGemFireVersion"
 	implementation "com.vmware.gemfire:gemfire-core:$vmwareGemFireVersion"
 	implementation "com.vmware.gemfire:gemfire-cq:$vmwareGemFireVersion"
+
 
 	implementation 'com.github.nyla-solutions:nyla.solutions.core:2.5.3'
 	implementation project(':components:domains')

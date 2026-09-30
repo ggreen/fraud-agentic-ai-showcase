@@ -12,11 +12,19 @@ deployments/local/dataFlow/print-app-properties.sh
 Vector Pipeline
 
 ```shell
-vector-stream=http --port=7888| vector-sink
+vector-stream=http --port=7888| vector-sink  --spring.profiles.active=cf
+```
+
+
+```properties
+app.http.spring.rabbitmq.username=vmware
+app.http.spring.rabbitmq.password=tanzu
+app.vector-sink.spring.rabbitmq.username=vmware
+app.vector-sink.spring.rabbitmq.password=tanzu
 ```
 
 ```shell
-alerts-stream=http --path-pattern=activities --port=8555| alert-ai-agent --spring.ai.ollama.chat.options.model=llama3 | alert-sink
+alerts-stream=http --path-pattern=activities --port=8555| alert-ai-agent --spring.ai.ollama.chat.options.model=llama3 --spring.profiles.active=cf | alert-sink
 ```
 
 ```properties

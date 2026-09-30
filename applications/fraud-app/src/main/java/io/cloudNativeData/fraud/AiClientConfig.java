@@ -1,5 +1,7 @@
 package io.cloudNativeData.fraud;
 
+import io.cloudNativeData.fraud.ai.tools.tools.AlertTools;
+import io.cloudNativeData.fraud.repositories.AlertRepository;
 import io.cloudNativeData.fraud.services.AiAnswerService;
 import io.cloudNativeData.fraud.services.SimilaritiesService;
 import org.springframework.ai.chat.client.ChatClient;
@@ -42,11 +44,11 @@ public class AiClientConfig {
     }
 
     @Bean
-    AiAnswerService answerService(ChatClient chatClient, List<Advisor> advisors)
+    AiAnswerService answerService(ChatClient chatClient, List<Advisor> advisors, AlertRepository alertRepository)
     {
         return prompt -> chatClient.prompt()
                 .user(prompt)
-                //.toolCallbacks(tools)
+                .tools(new AlertTools(alertRepository))
                 .advisors(advisors) //use GemFire vectorDB
                 .call().content();
     }
