@@ -2,4 +2,6 @@ rootProject.name = 'fraud-agentic-ai-showcase'
 
 include 'components:domains'
 include ':applications:fraud-app'
+include ':applications:integration:sinks:vector-sink'
+include ':applications:integration:processors:remove-by-gf-search-processor'
 
