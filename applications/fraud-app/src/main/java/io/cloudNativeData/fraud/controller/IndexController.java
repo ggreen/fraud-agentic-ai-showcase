@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-@Controller
+//@Controller
 public class IndexController {
 
     private final String userIdAttribId;
@@ -23,7 +23,7 @@ public class IndexController {
         this.userId = userId;
     }
 
-    @RequestMapping("/")
+//    @RequestMapping("/")
     public String homePage(Model model)
     {
         model.addAttribute(userIdAttribId, userId);

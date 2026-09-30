@@ -42,3 +42,6 @@ fi
 
 
 $GEMFIRE_HOME/bin/gfsh -e "connect" -e "create region --name=Alert --type=PARTITION --skip-if-exists"
+$GEMFIRE_HOME/bin/gfsh -e "connect" -e "create region --name=Activity --type=PARTITION --skip-if-exists"
+$GEMFIRE_HOME/bin/gfsh -e "connect" -e "create region --name=SearchResults --type=PARTITION --skip-if-exists"
+

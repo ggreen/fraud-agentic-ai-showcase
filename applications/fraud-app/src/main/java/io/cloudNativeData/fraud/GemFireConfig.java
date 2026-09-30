@@ -1,5 +1,6 @@
 package io.cloudNativeData.fraud;
 
+import io.cloudNativeData.fraud.domains.Activity;
 import io.cloudNativeData.fraud.domains.Alert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.geode.cache.DataPolicy;
@@ -19,6 +20,24 @@ public class GemFireConfig {
         var regionBean = new ClientRegionFactoryBean<String, Alert>();
         regionBean.setCache(cache);
         regionBean.setName("Alert");
+        regionBean.setDataPolicy(DataPolicy.EMPTY);
+        return regionBean;
+    }
+
+    @Bean("Activity")
+    ClientRegionFactoryBean<String, Activity> activity(ClientCache cache) {
+        var regionBean = new ClientRegionFactoryBean<String, Activity>();
+        regionBean.setCache(cache);
+        regionBean.setName("Activity");
+        regionBean.setDataPolicy(DataPolicy.EMPTY);
+        return regionBean;
+    }
+
+    @Bean("SearchResults")
+    ClientRegionFactoryBean<String, String> searchResults(ClientCache cache) {
+        var regionBean = new ClientRegionFactoryBean<String, String>();
+        regionBean.setCache(cache);
+        regionBean.setName("SearchResults");
         regionBean.setDataPolicy(DataPolicy.EMPTY);
         return regionBean;
     }
