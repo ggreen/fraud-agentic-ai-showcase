@@ -20,8 +20,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class AlertsConsumerTest {
 
-    private List<Alert> alerts = new ArrayList<>(JavaBeanGeneratorCreator.of(Alert.class)
-            .createCollection(10));
+    private final Alert alert = JavaBeanGeneratorCreator.of(Alert.class).create();
     private AlertsConsumer subject;
     @Mock
     private AlertRepository repository;
@@ -34,8 +33,8 @@ class AlertsConsumerTest {
     @Test
     void given_alerts_when_accept_then_saveAll() {
 
-        subject.accept(alerts);
+        subject.accept(alert);
 
-        verify(repository).saveAll(any());
+        verify(repository).save(any(Alert.class));
     }
 }

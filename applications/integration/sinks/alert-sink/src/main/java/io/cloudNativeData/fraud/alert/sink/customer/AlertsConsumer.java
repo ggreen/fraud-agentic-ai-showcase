@@ -12,13 +12,13 @@ import java.util.function.Consumer;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class AlertsConsumer implements Consumer<List<Alert>> {
+public class AlertsConsumer implements Consumer<Alert> {
 
     private final AlertRepository repository;
 
     @Override
-    public void accept(List<Alert> alerts) {
-      log.info("Received {} alerts", alerts.size());
-        repository.saveAll(alerts);
+    public void accept(Alert alert) {
+      log.info("Received alert:{} ", alert);
+        repository.save(alert);
     }
 }
