@@ -29,10 +29,12 @@ public class VectorSearchController {
     private final AiAnswerService aiAnswerService;
 
     @PostMapping
-    @Cacheable("SearchResults")
+//    @Cacheable("SearchResults")
     public String answerPrompt(@RequestBody String prompt) {
         log.info("prompt: {}",prompt);
-        return aiAnswerService.answer(prompt);
+        var response = aiAnswerService.answer(prompt);
+        log.info("response: {}",response);
+        return response;
     }
 
     /**

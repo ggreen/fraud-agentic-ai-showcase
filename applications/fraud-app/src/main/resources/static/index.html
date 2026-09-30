@@ -371,9 +371,8 @@
                 success: function(response) {
                     $loadingGroup.remove();
 
-                    let results = Array.isArray(response) ? response : (response.results || []);
 
-                    if (results.length === 0) {
+                    if (response.length === 0) {
                         appendMessage("No relevant security guides or vector results found.", "bot");
                         return;
                     }
@@ -381,9 +380,8 @@
                     let htmlContent = `<div>Based on current enterprise operational guides:</div>`;
                     htmlContent += `<div class="search-results-list">`;
 
-                    results.forEach(item => {
-                        const title = item.title || item.name || 'Document Result';
-                        const text = item.text || item.content || item.snippet || JSON.stringify(item);
+                        const title = 'Document Result';
+                        const text = response;
 
                         htmlContent += `
                         <div class="result-item">
@@ -391,7 +389,6 @@
                             <div class="result-snippet">${escapeHtml(text)}</div>
                         </div>
                     `;
-                    });
 
                     htmlContent += `</div>`;
                     appendMessage(htmlContent, 'bot');
