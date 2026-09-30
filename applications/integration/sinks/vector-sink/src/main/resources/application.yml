@@ -41,5 +41,8 @@ spring:
           group: ${spring.application.name}
       binder:
         connection-name-prefix: ${spring.application.name}
+  rabbitmq:
+    username: ${TANZU_RABBITMQ_USER}
+    password: ${TANZU_RABBITMQ_PASSWORD}
 server:
   port: 7088
