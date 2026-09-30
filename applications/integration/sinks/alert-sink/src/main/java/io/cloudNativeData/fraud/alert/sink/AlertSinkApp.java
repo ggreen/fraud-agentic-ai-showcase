@@ -1,11 +1,11 @@
-package showcase.alarm.ai.source;
+package io.cloudNativeData.fraud.alert.sink;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AlertAiProcessorAgent {
+public class AlertSinkApp {
     public static void main(String[] args) {
-        SpringApplication.run(AlertAiProcessorAgent.class,args);
+        SpringApplication.run(AlertSinkApp.class, args);
     }
 }

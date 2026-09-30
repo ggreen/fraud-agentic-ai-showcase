@@ -1,0 +1,61 @@
+server:
+  port: 0
+spring:
+  application:
+    name: alert-ai-processor
+  rabbitmq:
+    username: ${TANZU_RABBITMQ_USER}
+    password: ${TANZU_RABBITMQ_PASSWORD}
+  data:
+    gemfire:
+      pool:
+        locators: "localhost[10334]"
+  http:
+    client:
+      read-timeout: 60s
+  ai:
+    model:
+#      embedding: ollama
+      chat: ollama
+    ollama:
+#      base-url: http://localhost:11434
+      chat:
+        options:
+          format: "json"
+          model: gpt-oss:20b
+#          model: mistral:latest
+          # Increase to 60 or 120 seconds
+      init:
+        time-out: 5m
+        max-retries: 1
+  #          model: llama3.1:8b
+  cloud:
+    function:
+      definition: alertsConsumer
+    stream:
+      function:
+        bindings:
+          alertsConsumer-in-0: input
+      binder:
+        connection-name-prefix: ${spring.application.name}
+      default:
+        contentType: "application/json"
+
+#-----------------------
+ai:
+  timeouts:
+    seconds:
+      connection: 202000
+      read: 220000
+alerts:
+  inference:
+    batch: 2
+    delayMs: 5000
+  header:
+    names:
+      account: "account"
+      level: "level"
+stream:
+  activity:
+    filter:
+      value: "josiah"
