@@ -1,3 +1,5 @@
 rootProject.name = 'fraud-agentic-ai-showcase'
+
+include 'components:domains'
 include ':applications:fraud-app'
 

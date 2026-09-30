@@ -19,10 +19,32 @@ repositories {
 
 ext {
 	set('springAiVersion', "2.0.1")
+	springBootForGemFireVersion = '2.0.0'
+	vmwareGemFireVersion = '10.2.0'
 }
 
 dependencies {
+	// OpenAPI / Springdoc
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:3.0.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0'
+
+	// Spring Boot Starters
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+
+	//Ai
+	implementation 'org.springframework.ai:spring-ai-starter-model-ollama'
+//	implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+
+
+	//GemFire
 	implementation 'org.springframework.ai:spring-ai-starter-vector-store-gemfire'
+	implementation "com.vmware.gemfire:spring-boot-4.0-gemfire-10.2:$springBootForGemFireVersion"
+	implementation "com.vmware.gemfire:gemfire-core:$vmwareGemFireVersion"
+	implementation "com.vmware.gemfire:gemfire-cq:$vmwareGemFireVersion"
+
+	implementation 'com.github.nyla-solutions:nyla.solutions.core:2.5.3'
+	implementation project(':components:domains')
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -30,6 +52,8 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 }
+
+
 
 dependencyManagement {
 	imports {
@@ -39,4 +63,21 @@ dependencyManagement {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	maven {
+		url "https://packages.broadcom.com/artifactory/gemfire/"
+		metadataSources {
+			mavenPom()
+			artifact()
+			ignoreGradleMetadataRedirection()
+		}
+		credentials {
+			username System.getenv('BROADCOM_MAVEN_USERNAME')
+			password System.getenv('BROADCOM_GEMFIRE_MAVEN_PASSWORD')
+		}
+	}
 }
