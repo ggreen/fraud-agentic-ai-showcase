@@ -11,11 +11,10 @@
     <style>
         /* Modern Dark AI Copilot Chat Styles */
         .chat-widget {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 580px;
-            max-width: calc(100vw - 48px);
+            position: relative; /* Changed from fixed to relative so it flows with the document */
+            margin: 24px auto;  /* Added margin for spacing in document flow */
+            width: 100%;       /* Set to 100% to fill container width, or keep fixed width as needed */
+            max-width: 580px;
             height: 520px;
             background: #0b0f17;
             border-radius: 12px;
@@ -24,7 +23,6 @@
             flex-direction: column;
             overflow: hidden;
             font-family: 'Inter', sans-serif;
-            z-index: 1000;
             border: 1px solid #1e293b;
             color: #e2e8f0;
         }
@@ -283,38 +281,38 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- AI Copilot Chat Assistant Widget -->
-<div class="chat-widget">
-    <div class="chat-header">
-        <div class="chat-header-title">
-            <span class="status-dot"></span>
-            <span>AI COPILOT CHAT</span>
-        </div>
-        <div class="chat-header-tags">
-            <span>Model: <strong>RAG-Grounded-LLM</strong></span>
-            <span class="tag-pill">Strict Compliance Guardrails</span>
-        </div>
-    </div>
-
-    <div class="chat-messages" id="chat-messages">
-        <!-- Initial System Welcome -->
-        <div class="message-group system">
-            <div class="message-meta">
-                <span>System</span>
-                <span>10:42 AM</span>
+    <!-- AI Copilot Chat Assistant Widget placed inline inside the layout container -->
+    <div class="chat-widget">
+        <div class="chat-header">
+            <div class="chat-header-title">
+                <span class="status-dot"></span>
+                <span>AI COPILOT CHAT</span>
             </div>
-            <div class="message system">
-                AI Fraud Investigation Copilot initialized. Case #US-10482 loaded with 4 real-time alert triggers attached.
+            <div class="chat-header-tags">
+                <span>Model: <strong>RAG-Grounded-LLM</strong></span>
+                <span class="tag-pill">Strict Compliance Guardrails</span>
             </div>
         </div>
-    </div>
 
-    <form class="chat-input-area" id="chat-form">
-        <input type="text" id="chat-input" placeholder="Type your query or instruction..." autocomplete="off" required>
-        <button type="submit"><i class="fas fa-paper-plane"></i></button>
-    </form>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Initial System Welcome -->
+            <div class="message-group system">
+                <div class="message-meta">
+                    <span>System</span>
+                    <span>10:42 AM</span>
+                </div>
+                <div class="message system">
+                    AI Fraud Investigation Agent initialized.
+                </div>
+            </div>
+        </div>
+
+        <form class="chat-input-area" id="chat-form">
+            <input type="text" id="chat-input" placeholder="Type your query or instruction..." autocomplete="off" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
 </div>
 
 <script src="script.js"></script>
@@ -380,10 +378,10 @@
                     let htmlContent = `<div>Based on current enterprise operational guides:</div>`;
                     htmlContent += `<div class="search-results-list">`;
 
-                        const title = 'Document Result';
-                        const text = response;
+                    const title = 'Document Result';
+                    const text = response;
 
-                        htmlContent += `
+                    htmlContent += `
                         <div class="result-item">
                             <div class="result-title">${escapeHtml(title)}</div>
                             <div class="result-snippet">${escapeHtml(text)}</div>
