@@ -40,6 +40,7 @@ dependencies {
 	implementation "com.vmware.gemfire:spring-boot-4.0-gemfire-10.2:$springBootForGemFireVersion"
 	implementation "com.vmware.gemfire:gemfire-core:$vmwareGemFireVersion"
 	implementation "com.vmware.gemfire:gemfire-cq:$vmwareGemFireVersion"
+	implementation "org.springframework.ai:spring-ai-starter-model-chat-memory-repository-redis"
 
 	implementation 'org.springframework.ai:spring-ai-starter-mcp-client-webflux'
 

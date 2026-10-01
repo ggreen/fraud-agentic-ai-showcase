@@ -45,3 +45,5 @@ $GEMFIRE_HOME/bin/gfsh -e "connect" -e "create region --name=Alert --type=PARTIT
 $GEMFIRE_HOME/bin/gfsh -e "connect" -e "create region --name=Activity --type=PARTITION --skip-if-exists"
 $GEMFIRE_HOME/bin/gfsh -e "connect" -e "create region --name=SearchResults --type=PARTITION --skip-if-exists"
 
+$GEMFIRE_HOME/bin/gfsh -e "connect" -e "deploy --jar=$PWD/deployments/local/dataServices/gemfire/libs/gemfire-clear-region-function-1.0.1.jar"
+
