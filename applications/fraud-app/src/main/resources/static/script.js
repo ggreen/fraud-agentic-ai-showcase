@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const alertsTableBody = document.querySelector('#alerts-table tbody');
-    const activityTableBody = document.querySelector('#activity-table tbody');
 
     // --- DATA FOR ALERTS TABLE (Severity-based) ---
     /*
@@ -69,34 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /** Renders the Activity table */
-    function renderActivity() {
-        activityData.forEach(activity => {
-
-
-         var activityRowId = "activityRow"+activity.id;
-         const existingRow = document.getElementById(activityRowId);
-
-         if (existingRow) {
-            return; //skip
-         }
-
-         const row = activityTableBody.insertRow();
-         row.id = activityRowId;
-
-         // Cell 1: Icon
-         row.insertCell().innerHTML = `<div class="activity-icon"><i class="fas ${activity.icon}"></i></div>`;
-
-         // Cell 2: Time
-         row.insertCell().textContent = activity.time;
-
-         // Cell 3: Activity Description
-         row.insertCell().textContent = activity.activity;
-        });
-    }
-
     renderAlerts();
-    renderActivity();
+    // renderActivity();
 
      var alertSSE = new EventSource('alert/alerts');
      alertSSE.onmessage = function(message) {
@@ -111,20 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
            	if(alertsData.length > 0)
            	    renderAlerts();
       };
-
-   var activitySSE = new EventSource('activities/activity');
-        activitySSE.onmessage = function(message) {
-
-               console.log("data: "+message.data);
-
-               if(message.data == null || message.data.length == 0)
-                   return; //skip
-
-              	activityData = JSON.parse(message.data);
-
-              	if(activityData.length > 0)
-              	    renderActivity();
-         };
 
 });
 
