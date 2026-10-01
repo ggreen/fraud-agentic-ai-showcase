@@ -98,5 +98,5 @@ Provide a summary of our recent conversations
 
 
 ```shell
-./deployments/local/scripts/clean-all.sh 
+./deployments/local/scripts/clean-all.sh  
 ```
