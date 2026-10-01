@@ -14,5 +14,15 @@ spring:
         streamable-http:
           mcp-endpoint: /api/mcp
           keep-alive-interval: 30s
+  datasource:
+    url: ${LC_GREENPLUM_JDBC_URL}
+    username: ${LC_GREENPLUM_USER}
+    password: ${LC_GREENPLUM_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties.hibernate.default_schema: fraud
+    hibernate:
+      ddl-auto: none
+      show-sql: true
 server:
   port: 7901
