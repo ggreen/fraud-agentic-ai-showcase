@@ -61,3 +61,37 @@ Demo Storyboard: Real-Time Fraud & Alert Remediation
 3. Low-Latency Alerting: Alerts and active policies are served directly from Tanzu GemFire to ensure millisecond response times. 
 4. Context-Aware Recommendations: Through an AI chat assistant, users can request actionable remediation steps for flagged alerts. 
 5. Unified Data Intelligence (MCP): Using Model Context Protocol (MCP) servers, the assistant contextually bridges real-time alert data in GemFire with long-term historical activity trends stored in Greenplum.
+
+
+Script
+
+1. Get Activities
+```text
+Provide list of current activities
+```
+
+```shell
+./deployments/local/scripts/post-normal-activites.sh
+```
+
+Post Fraud Activities
+
+```shell
+./deployments/local/scripts/post-activites.sh
+```
+
+what is the standard policy when there is a Series of very small transactions within 2 minutes
+
+
+The recommended policy to contact fraud@acme.immediately
+
+
+Provide a summary of our recent conversations
+
+# Cleanup
+
+
+
+```shell
+./deployments/local/scripts/clean-all.sh 
+```

@@ -35,7 +35,11 @@ public class PublisherConfig {
                 var headers = new HttpHeaders();
                 headers.setContentType(MediaType.TEXT_PLAIN);
 
-                var request = new HttpEntity<String>(promptContext.context(), headers);
+
+                var context = "Given question:"+promptContext.promptText()+ "\n"
+                +" Provide an answer using the following context: "+ promptContext.context();
+
+                var request = new HttpEntity<String>(context, headers);
                 restTemplate.postForObject(vectorServiceUrl, request, String.class);
             }
         };
