@@ -11,7 +11,7 @@ databaseChangeLog:
             sql: |
               CREATE SCHEMA IF NOT EXISTS fraud;
               
-              create table fraud.actvity_entity 
+              create table fraud.activity_entity 
               (id varchar(255) not null, payload jsonb not null, primary key (id));
               
               CREATE OR REPLACE VIEW fraud.v_actvity_analytics AS
@@ -22,4 +22,4 @@ databaseChangeLog:
                   (payload->>'icon') AS icon,
                   (payload->>'time') AS time,
                   (payload->>'activity') AS activity
-              FROM fraud.actvity_entity;
+              FROM fraud.activity_entity;

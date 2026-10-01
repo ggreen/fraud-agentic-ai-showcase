@@ -17,7 +17,7 @@ import org.hibernate.type.SqlTypes;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(schema = "activities")
+@Table(schema = "fraud")
 public class ActivityEntity {
 
     @Id

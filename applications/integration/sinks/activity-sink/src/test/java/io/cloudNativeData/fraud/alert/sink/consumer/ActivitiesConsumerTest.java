@@ -1,6 +1,5 @@
-package io.cloudNativeData.fraud.alert.sink.customer;
+package io.cloudNativeData.fraud.alert.sink.consumer;
 
-import io.cloudNativeData.fraud.alert.sink.consumer.ActivitiesConsumer;
 import io.cloudNativeData.fraud.alert.sink.repository.ActivityRepository;
 import io.cloudNativeData.fraud.alert.sink.repository.entity.ActivityEntity;
 import io.cloudNativeData.fraud.domains.Activity;

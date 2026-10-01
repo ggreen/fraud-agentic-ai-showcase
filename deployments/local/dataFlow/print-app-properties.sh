@@ -9,3 +9,6 @@ echo processor.alert-ai-agent.bootVersion=3
 
 echo sink.alert-sink=file://$PWD/applications/integration/sinks/alert-sink/build/libs/alert-sink-0.0.1-SNAPSHOT.jar
 echo sink.alert-sink.bootVersion=3
+
+echo sink.activity-sink=file://$PWD/applications/integration/sinks/activity-sink/build/libs/activity-sink-0.0.1-SNAPSHOT.jar
+echo sink.activity-sink.bootVersion=3
