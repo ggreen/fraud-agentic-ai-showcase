@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20260608-01-sql
+      author: fraud-agent
+      comment: "Create activities tables using raw SQL"
+      changes:
+        - sql:
+            dbms: postgresql
+            endDelimiter: ";"
+            splitStatements: true
+            sql: |
+              CREATE SCHEMA IF NOT EXISTS fraud;
+              
+              create table fraud.actvity_entity 
+              (id varchar(255) not null, payload jsonb not null, primary key (id));
+              
+              CREATE OR REPLACE VIEW fraud.v_actvity_analytics AS
+              SELECT 
+                  id,
+                  -- Root level fields
+                  (payload->>'account') AS account,
+                  (payload->>'icon') AS icon,
+                  (payload->>'time') AS time,
+                  (payload->>'activity') AS activity
+              FROM fraud.actvity_entity;
