@@ -41,6 +41,7 @@ dependencies {
 	implementation "com.vmware.gemfire:gemfire-core:$vmwareGemFireVersion"
 	implementation "com.vmware.gemfire:gemfire-cq:$vmwareGemFireVersion"
 
+	implementation 'org.springframework.ai:spring-ai-starter-mcp-client-webflux'
 
 	implementation 'com.github.nyla-solutions:nyla.solutions.core:2.5.3'
 	implementation project(':components:domains')

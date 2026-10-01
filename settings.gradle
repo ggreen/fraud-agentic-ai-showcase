@@ -6,4 +6,5 @@ include ':applications:integration:sinks:vector-sink'
 include ':applications:integration:processors:remove-by-gf-search-processor'
 include ':applications:integration:processors:alert-ai-agent-processor'
 include ':applications:integration:sinks:alert-sink'
+include ':applications:mcp:fraud-analytics'
 

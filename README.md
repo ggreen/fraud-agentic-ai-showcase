@@ -128,3 +128,13 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{ "id" : "76", "icon" : "fa-credit-card",  "account" : "josiah", "time" : "07:15 PM", "activity" : "type: SALE, pan: 4111XXXXXX1111, amount: 100.00, date: ''1-7-2026 19:12:34'' terminal_id: TERM_88291, merchant_id: MERCH_55432" }'
 ```
+
+
+
+Demo Storyboard: Real-Time Fraud & Alert Remediation
+
+1. Real-Time Detection: An agent continuously intercepts account activities in real time. 
+2. Risk Scoring: Leveraging an AI model, incoming events are dynamically scored into HIGH, MEDIUM, or LOW severity risk tiers. 
+3. Low-Latency Alerting: Alerts and active policies are served directly from Tanzu GemFire to ensure millisecond response times. 
+4. Context-Aware Recommendations: Through an AI chat assistant, users can request actionable remediation steps for flagged alerts. 
+5. Unified Data Intelligence (MCP): Using Model Context Protocol (MCP) servers, the assistant contextually bridges real-time alert data in GemFire with long-term historical activity trends stored in Greenplum.
