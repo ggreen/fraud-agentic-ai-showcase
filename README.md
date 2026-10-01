@@ -80,13 +80,18 @@ Post Fraud Activities
 ./deployments/local/scripts/post-activites.sh
 ```
 
+```text
 what is the standard policy when there is a Series of very small transactions within 2 minutes
+```
 
 
+```text
 The recommended policy to contact fraud@acme.immediately
+```
 
-
+```text
 Provide a summary of our recent conversations
+```
 
 # Cleanup
 
