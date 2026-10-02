@@ -1,9 +1,59 @@
 # fraud-agentic-ai-showcase
 fraud-agentic-ai-showcase
 
-![img.png](img.png)
 
-Demo
+![screen.png](docs/img/fraud-ai.png)
+
+
+## Reference Architecture
+
+![fraud-spring-architecture.png](docs/img/fraud-spring-architecture.png)
+
+
+Prerequisites
+
+- [Tanzu Data Flow](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-data-flow/2-1/tdf-tanzu/getting-started.html) or [Spring Cloud Data Flow](https://enterprise.spring.io/projects/spring-cloud-dataflow)
+- [GemFire](https://gemfire.dev)
+- [Podman](https://podman.io/)
+- [Tanzu RabbitMQ OCI](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-rabbitmq-oci/4-3.html) 
+- Docker (for Greenplum)
+
+## Getting Started
+
+Start Ollama in Podman
+
+```shell
+deployments/local/ai/start-ollama.sh
+```
+
+Start GemFire
+
+```shell
+deployments/local/dataServices/gemfire/start-gemfire-local.sh
+```
+
+
+Start Greenplum in Docker
+
+```shell
+deployments/local/dataServices/greenplum/start-greenplum.sh
+```
+
+Start Tanzu RabbitMQ
+```shell
+deployments/local/dataServices/rabbitmq/start-rabbitmq.sh
+```
+
+
+Start Valkey
+
+```shell
+deployments/local/dataServices/valkey/start-valkey.sh
+```
+
+
+
+# Demo
 
 ```shell
 deployments/local/dataFlow/print-app-properties.sh
@@ -47,7 +97,11 @@ app.activity-sink.spring.rabbitmq.password=tanzu
 
 
 
+## Demo Testing
+
+
 Activities Testing
+
 ```shell
 ./deployments/local/scripts/post-activites.sh
 ```
@@ -80,15 +134,16 @@ Post Fraud Activities
 ./deployments/local/scripts/post-activites.sh
 ```
 
+**Prompt**
 ```text
 what is the standard policy when there is a Series of very small transactions within 2 minutes
 ```
 
-
+**Prompt**
 ```text
 The recommended policy to contact fraud@acme.immediately
 ```
-
+**Prompt**
 ```text
 Provide a summary of our recent conversations
 ```
