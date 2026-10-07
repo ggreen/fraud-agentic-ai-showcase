@@ -10,4 +10,4 @@ valkey-cli --scan --pattern "my-chat:agent-demo:*" | xargs -r valkey-cli UNLINK
 
 
 echo "Clearing Greenplum"
-PGPASSWORD=$LC_GREENPLUM_PASSWORD psql -h localhost -p 15432 -U $LC_GREENPLUM_USER -d postgres -c "TRUNCATE TABLE fraud.activity_entity;"
+PGPASSWORD=$LC_GREENPLUM_PASSWORD psql -h localhost -p 15432 -U $LC_GREENPLUM_USER -d postgres -c "delete from fraud.activity_entity;"

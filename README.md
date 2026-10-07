@@ -20,7 +20,7 @@ Prerequisites
 
 ## Getting Started
 
-Start Ollama in Podman
+Start Ollama in Podman (if running locally)
 
 ```shell
 deployments/local/ai/start-ollama.sh
@@ -40,6 +40,7 @@ deployments/local/dataServices/greenplum/start-greenplum.sh
 ```
 
 Start Tanzu RabbitMQ
+
 ```shell
 deployments/local/dataServices/rabbitmq/start-rabbitmq.sh
 ```
@@ -52,14 +53,13 @@ deployments/local/dataServices/valkey/start-valkey.sh
 ```
 
 
-
 # Demo
 
 ```shell
-deployments/local/dataFlow/print-app-properties.sh
+deployments/local/dataServices/dataFlow/print-app-properties.sh
 ```
 
-Vector Pipeline
+Create Vector Pipeline
 
 ```shell
 vector-stream=http --port=7888| vector-sink  --spring.profiles.active=cf
@@ -73,6 +73,7 @@ app.vector-sink.spring.rabbitmq.username=vmware
 app.vector-sink.spring.rabbitmq.password=tanzu
 ```
 
+**Create Fraud Stream**
 ```shell
 fraud-stream=http --path-pattern=activities --port=8555 | alert-ai-agent --spring.ai.ollama.chat.options.model=llama3 --spring.profiles.active=cf  | alert-sink
 ```
@@ -86,25 +87,37 @@ app.alert-ai-agent.spring.rabbitmq.username=vmware
 app.alert-ai-agent.spring.rabbitmq.password=tanzu
 ```
 
+**Create Activity stream** 
 ```shell
 activities-stream=:fraud-stream.http > activity-sink
 ```
 
+Deployment Properties
 ```properties
 app.activity-sink.spring.rabbitmq.username=vmware
 app.activity-sink.spring.rabbitmq.password=tanzu
 ```
 
 
-
-## Demo Testing
-
-
-Activities Testing
+Start Fraud App
 
 ```shell
-./deployments/local/scripts/post-activites.sh
+java -jar applications/fraud-app/build/libs/fraud-app-0.0.1-SNAPSHOT.jar --spring.profiles.active=cf
 ```
+
+Start MCP
+
+```shell
+java -jar applications/mcp/fraud-analytics/build/libs/fraud-analytics-0.0.1-SNAPSHOT.jar --spring.profiles.active=cf
+```
+
+Open Application
+
+```shell
+open http://localhost:5010
+```
+
+## Demo Testing
 
 
 
@@ -117,6 +130,10 @@ Demo Storyboard: Real-Time Fraud & Alert Remediation
 5. Unified Data Intelligence (MCP): Using Model Context Protocol (MCP) servers, the assistant contextually bridges real-time alert data in GemFire with long-term historical activity trends stored in Greenplum.
 
 
+```shell
+./deployments/local/scripts/post-normal-activites.sh
+```
+
 Script
 
 1. Get Activities
@@ -124,9 +141,6 @@ Script
 Provide list of current activities
 ```
 
-```shell
-./deployments/local/scripts/post-normal-activites.sh
-```
 
 Post Fraud Activities
 
@@ -134,15 +148,28 @@ Post Fraud Activities
 ./deployments/local/scripts/post-activites.sh
 ```
 
+```text
+Provide list of current activities
+```
+
+
 **Prompt**
 ```text
 what is the standard policy when there is a Series of very small transactions within 2 minutes
 ```
 
+**Add Context**
+```properties
+prompt=what is the standard policy when there is a Series of very small transactions within 2 minutes
+context=The recommended policy to contact fraud@acme.immediately
+```
+
 **Prompt**
 ```text
-The recommended policy to contact fraud@acme.immediately
+what is the standard policy when there is a Series of very small transactions within 2 minutes
 ```
+
+
 **Prompt**
 ```text
 Provide a summary of our recent conversations
@@ -153,5 +180,5 @@ Provide a summary of our recent conversations
 
 
 ```shell
-./deployments/local/scripts/clean-all.sh  
+./deployments/local/scripts/clean-all.sh
 ```
